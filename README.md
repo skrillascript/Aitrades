@@ -202,6 +202,17 @@ Each JSONL row must contain a unique increasing `market_date`, per-symbol adjust
 `close` prices, and the forecasts that were available at that close. The final session's signal
 is reported as pending rather than falsely counted as an executed trade.
 
+To preview the dashboard locally, serve the repository root — no build step exists:
+
+```bash
+python scripts/serve_static.py --port 4173
+```
+
+Then open <http://localhost:4173/>. The server binds `0.0.0.0`, serves `data/*.json` with
+`no-store` so a preview never shows a stale ledger, and stays inside the repository root. It is a
+preview tool with no authentication and must not be exposed publicly; `/account/` is gated by the
+fleet API, not by this server.
+
 ## Repository map
 
 ```text
